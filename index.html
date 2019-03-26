@@ -177,7 +177,7 @@
                 <section class="postShorten-group main-content-wrap">
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -205,26 +205,13 @@
 
             </div>
             
-                <div class="postShorten-content">
+                <div class="postShorten-excerpt">
                     <h4 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description:"></a>Problem Description:</h4><p>Given a 2D binary matrix filled with 0’s and 1’s, find the largest square containing only 1’s and return its area.</p>
-<p>Example:</p>
-<p>Input: </p>
-<p>1  0  1  0  0<br>1  0  1  1  1<br>1  1  1  1  1<br>1  0  0  1  0</p>
-<p>Output: 4</p>
-<h4 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis:"></a>Analysis:</h4><h6 id="Algorithm-1"><a href="#Algorithm-1" class="headerlink" title="Algorithm 1:"></a>Algorithm 1:</h6><p>This problem is very similar to <a href="http://andres0703.github.io/2019/03/21/maximal-rectangle/" title="[Rectangle problem]" target="_blank" rel="noopener">No.85 Maximal Rectangle problem</a>. In fact I tried to solve this problem right after Maximal Rectangle problem, so I naturally came up with a solution based upon that algorithm. The majority of the code remain the same, except when updating the maximum area after each row iteration, instead of calculate<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res = (right[i][j] - left[i][j]) * height[i][j];</span><br></pre></td></tr></table></figure><br>We compare height[i][j] and right[i][j] - left[i][j] and take the smaller one as square’s side, then the area is size squared.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int r = Math.min(right[i][j] - left[i][j], height[i][j]);</span><br><span class="line">res = r * r;</span><br></pre></td></tr></table></figure></p>
-<h6 id="Algorithm-2"><a href="#Algorithm-2" class="headerlink" title="Algorithm 2:"></a>Algorithm 2:</h6><p>Still dynamic programming, but this one only uses one matrix. </p>
-<figure class="highlight plain"><figcaption><span>MaximalSquare.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class MaximalSquare &#123;</span><br><span class="line">    public int maximalSquare(char[][] matrix) &#123;</span><br><span class="line">        if (matrix == null || matrix.length == 0) return 0;</span><br><span class="line">        int res = 0;</span><br><span class="line">        int m = matrix.length;</span><br><span class="line">        int n = matrix[0].length;</span><br><span class="line">        int[][] dp = new int[m + 1][n + 1];</span><br><span class="line">        </span><br><span class="line">        for (int i = 1; i &lt; m + 1; i++) &#123;</span><br><span class="line">            for (int j = 1; j &lt; n + 1; j++) &#123;</span><br><span class="line">                if (matrix[i - 1][j - 1] == &apos;1&apos;) &#123;</span><br><span class="line">                    dp[i][j] = Math.min(Math.min(dp[i - 1][j], dp[i][j - 1]), dp[i - 1][j - 1]) + 1;ß</span><br><span class="line">                &#125;</span><br><span class="line">                res = Math.max(res, dp[i][j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res * res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
                     
+                        <a href="/2019/03/26/maximal-square/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
                         
-
-                    
-                    
-                        <p>
-                            <a href="/2019/03/26/maximal-square/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -233,7 +220,7 @@
     </article>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -261,32 +248,14 @@
 
             </div>
             
-                <div class="postShorten-content">
+                <div class="postShorten-excerpt">
                     <h4 id="Problem-description"><a href="#Problem-description" class="headerlink" title="Problem description:"></a>Problem description:</h4><p>Given two words word1 and word2, find the minimum number of operations required to convert word1 to word2.</p>
 <p>You have the following 3 operations permitted on a word:<br>Insert a character<br>Delete a character<br>Replace a character</p>
-<p>Example 1:</p>
-<p>Input: word1 = “horse”, word2 = “ros”<br>Output: 3<br>Explanation:<br>horse -&gt; rorse (replace ‘h’ with ‘r’)<br>rorse -&gt; rose (remove ‘r’)<br>rose -&gt; ros (remove ‘e’)</p>
-<h4 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis:"></a>Analysis:</h4><p>This problem can be solved with dynamic programming. If the length of original word and target word are l1 and l2 respectively, then we first construct a matrix dp. Each element in the matrix <em>dp[i][j]</em> represents a subproblem, which means the minimum number of steps it takes to convert from first i letters of word 1 to first j letters of word 2. </p>
-<h5 id="Subproblem-relationship-from-bottom-up"><a href="#Subproblem-relationship-from-bottom-up" class="headerlink" title="Subproblem relationship from bottom up:"></a>Subproblem relationship from bottom up:</h5><p>If the i-th letter in word 1 is equal to j-th letter in word 2, then dp[i][j] equals to dp[i - 1][j - 1], because we don’t have to make any action on this letter. If the two letters are not the same, then we have to perform one action:</p>
-<ol>
-<li>delete:  dp[i][j] = dp[i - 1][j] + 1</li>
-<li>insert:  dp[i][j] = dp[i][j - 1] + 1</li>
-<li>replace: dp[i][i] = dp[i - 1][j - 1] + 1</li>
-</ol>
-<p>Then we choose the minimum number among the three options.<br>The result would be dp[l2][l1].</p>
-<p>Here’s a link of an excellent video explanation:<br><a href="https://www.youtube.com/watch?v=MiqoA-yF-0M" target="_blank" rel="noopener">https://www.youtube.com/watch?v=MiqoA-yF-0M</a></p>
-<h4 id="Java-Code"><a href="#Java-Code" class="headerlink" title="Java Code:"></a>Java Code:</h4><figure class="highlight java"><figcaption><span>EditDistance.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EditDistance</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDistance</span><span class="params">(String word1, String word2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l1 = word1.length();</span><br><span class="line">        <span class="keyword">int</span> l2 = word2.length();</span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[l2 + <span class="number">1</span>][l1 + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; l2 + <span class="number">1</span>; i++) &#123;</span><br><span class="line">            dp[i][<span class="number">0</span>] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; l1 + <span class="number">1</span>; i++) &#123;</span><br><span class="line">            dp[<span class="number">0</span>][i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; l2 + <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; l1 + <span class="number">1</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (word2.charAt(i - <span class="number">1</span>) == word1.charAt(j - <span class="number">1</span>)) &#123;</span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i][j] = <span class="number">1</span> + Math.min(dp[i - <span class="number">1</span>][j - <span class="number">1</span>], Math.min(dp[i - <span class="number">1</span>][j], dp[i][j - <span class="number">1</span>]));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[l2][l1];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
                     
+                        <a href="/2019/03/25/edit-distance/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
                         
-
-                    
-                    
-                        <p>
-                            <a href="/2019/03/25/edit-distance/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -295,7 +264,7 @@
     </article>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -323,41 +292,22 @@
 
             </div>
             
-                <div class="postShorten-content">
-                    <h4 id="Problem-description"><a href="#Problem-description" class="headerlink" title="Problem description:"></a>Problem description:</h4><p> Given a 2D binary matrix filled with 0’s and 1’s, find the largest rectangle containing only 1’s and return its area.</p>
-<pre><code>Input:
-    [[&quot;1&quot;,&quot;0&quot;,&quot;1&quot;,&quot;0&quot;,&quot;0&quot;],
-     [&quot;1&quot;,&quot;0&quot;,&quot;1&quot;,&quot;1&quot;,&quot;1&quot;],
-     [&quot;1&quot;,&quot;1&quot;,&quot;1&quot;,&quot;1&quot;,&quot;1&quot;],
-     [&quot;1&quot;,&quot;0&quot;,&quot;0&quot;,&quot;1&quot;,&quot;0&quot;]]
-Output: 6
-</code></pre><h4 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis:"></a>Analysis:</h4><p>This is a typical dynamic programming problem. We keep three matrices: left, right, height, all have the same size as the input. Here’s a great explanation of what these matrices represent from Leetcode user @wahcheung in Chinese. The key to understand this algorithm is clarify what left and right matrix each represents.</p>
-<div class="figure fig-100" style="width:;"><a class="fancybox" href="leecode85.png" title data-caption data-fancybox="default"><img class="fig-img" src="leecode85.png" alt></a></div>
-<p>In the example above, the left, right, height are as follows:</p>
-<div class="figure fig-100" style="width:600px;"><a class="fancybox" href="matrix.jpeg" title data-caption data-fancybox="default"><img class="fig-img" src="matrix.jpeg" style="width:600px;height:300px;" alt></a></div>
-<p>The maximum rectangle at (i, j) would be calculated as (right(i, j) - left(i, j)) * height(i, j).</p>
-<p>In the implementation, in order to reduce space complexity, instead of using actual matrices, we keep three arrays to proceed and update row by row. </p>
-<h4 id="Java-Code"><a href="#Java-Code" class="headerlink" title="Java Code:"></a>Java Code:</h4><figure class="highlight java"><figcaption><span>MaximumRectangle.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MaximumRectangle</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maximalRectangle</span><span class="params">(<span class="keyword">char</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (matrix == <span class="keyword">null</span> || matrix.length == <span class="number">0</span>)  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> n = matrix[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">int</span>[] left = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">        <span class="keyword">int</span>[] right = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">        <span class="keyword">int</span>[] height = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">        </span><br><span class="line">        Arrays.fill(right, n);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix.length; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> curLeft = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> curRight = n;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (matrix[i][j] == <span class="string">'0'</span>) &#123;</span><br><span class="line">                    height[j] = <span class="number">0</span>;</span><br><span class="line">                    left[j] = <span class="number">0</span>;</span><br><span class="line">                    curLeft = j + <span class="number">1</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    height[j]++;</span><br><span class="line">                    left[j] = Math.max(left[j], curLeft);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = n - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">                <span class="keyword">if</span> (matrix[i][j] == <span class="string">'0'</span>) &#123;</span><br><span class="line">                    curRight = j;</span><br><span class="line">                    right[j] = n;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    right[j] = Math.min(right[j], curRight);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">                res = Math.max(res, (right[j] - left[j]) * height[j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
+                <div class="postShorten-excerpt">
+                    <h4 id="Problem-description"><a href="#Problem-description" class="headerlink" title="Problem description:"></a>Problem description:</h4><p> Given a 2D binary matrix filled with 0’s and 1’s, find the largest rectangle containing only 1’s and return its area.<br>
                     
+                        <a href="/2019/03/21/maximal-rectangle/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
                         
-
                     
-                    
-                        <p>
-                            <a href="/2019/03/21/maximal-rectangle/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
+                </p></div>
             
         </div>
         
     </article>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -385,36 +335,22 @@ Output: 6
 
             </div>
             
-                <div class="postShorten-content">
-                    <h3 id="Serialization"><a href="#Serialization" class="headerlink" title="Serialization"></a>Serialization</h3><p>Serialization is the process of translating data structures or object state into a format that can be stored (for example, in a file or memory buffer) or transmitted (for example, across a network connection link) and reconstructed later (possibly in a different computer environment).</p>
-<p>This process of serializing an object is also called marshalling an object. The opposite operation, extracting a data structure from a series of bytes, is deserialization (also called unmarshalling).</p>
-<h3 id="Example-Code"><a href="#Example-Code" class="headerlink" title="Example Code"></a>Example Code</h3><figure class="highlight java"><figcaption><span>Worms.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.ObjectOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.ByteArrayOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.ObjectInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Random;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Worm</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Worm</span><span class="params">(<span class="keyword">int</span> id, <span class="keyword">int</span> size)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.size = size;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"["</span> + id + <span class="string">"]: "</span> + size;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException, IOException </span>&#123;</span><br><span class="line">        Random rand = <span class="keyword">new</span> Random();</span><br><span class="line">        <span class="keyword">int</span> number = <span class="number">5</span>;</span><br><span class="line">        String header = <span class="string">"Worms record"</span>;</span><br><span class="line">        Worm[] worms = <span class="keyword">new</span> Worm[number];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">            worms[i] = <span class="keyword">new</span> Worm(i, rand.nextInt(<span class="number">20</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(header);</span><br><span class="line">        System.out.println(Arrays.toString(worms));</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">         * Using file (FileOutputStream &amp; FileInputStream)</span></span><br><span class="line"><span class="comment">         * </span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="comment">// export to "worms.out" file</span></span><br><span class="line">        ObjectOutputStream out = <span class="keyword">new</span> ObjectOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">"worms.out"</span>));</span><br><span class="line">        out.writeObject(header);</span><br><span class="line">        out.writeObject(worms);</span><br><span class="line">        out.close();</span><br><span class="line"></span><br><span class="line">        Worm[] wormsNew = <span class="keyword">new</span> Worm[number];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// import from "worms.out" file</span></span><br><span class="line">        ObjectInputStream in = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"worms.out"</span>));</span><br><span class="line">        String s = (String) in.readObject();</span><br><span class="line">        wormsNew = (Worm[]) in.readObject();</span><br><span class="line">        in.close();</span><br><span class="line"></span><br><span class="line">        System.out.println(s);</span><br><span class="line">        System.out.println(Arrays.toString(wormsNew));</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Using byte array (ByteArrayOutputStream &amp; ByteArrayInputStream)</span></span><br><span class="line"><span class="comment">         * </span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        ByteArrayOutputStream bout = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">        ObjectOutputStream out2 = <span class="keyword">new</span> ObjectOutputStream(bout);</span><br><span class="line">        out2.writeObject(header);</span><br><span class="line">        out2.writeObject(worms);</span><br><span class="line">        out2.close();</span><br><span class="line"></span><br><span class="line">        ObjectInputStream in2 = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> ByteArrayInputStream(bout.toByteArray()));</span><br><span class="line">        String s2 = (String) in2.readObject();</span><br><span class="line">        Worm[] wormsNew2 = <span class="keyword">new</span> Worm[number];</span><br><span class="line">        wormsNew2 = (Worm[]) in2.readObject();</span><br><span class="line">        in2.close();</span><br><span class="line"></span><br><span class="line">        System.out.println(s2);</span><br><span class="line">        System.out.println(Arrays.toString(wormsNew2));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="Comparison-ByteArrayOutputStream-vs-FileOutputStream"><a href="#Comparison-ByteArrayOutputStream-vs-FileOutputStream" class="headerlink" title="Comparison ByteArrayOutputStream vs FileOutputStream"></a>Comparison ByteArrayOutputStream vs FileOutputStream</h3><ul>
-<li><p>ByteArrayOutputStream:<br>Takes up memory space, but runs faster.</p>
-</li>
-<li><p>FileOutputStream:<br>Save and load in local disk, takes longer to save and read.</p>
-</li>
-</ul>
-
+                <div class="postShorten-excerpt">
+                    <h3 id="Serialization"><a href="#Serialization" class="headerlink" title="Serialization"></a>Serialization</h3><p>Serialization is the process of translating data structures or object state into a format that can be stored (for example, in a file or memory buffer) or transmitted (for example, across a network connection link) and reconstructed later (possibly in a different computer environment).<br>
                     
+                        <a href="/2019/03/19/Serializable/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
                         
-
                     
-                    
-                        <p>
-                            <a href="/2019/03/19/Serializable/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
+                </p></div>
             
         </div>
         
     </article>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -436,62 +372,13 @@ Output: 6
 
             </div>
             
-                <div class="postShorten-content">
-                    <h1 id="Heading-1"><a href="#Heading-1" class="headerlink" title="Heading 1"></a>Heading 1</h1><h2 id="Heading-2"><a href="#Heading-2" class="headerlink" title="Heading 2"></a>Heading 2</h2><h3 id="Heading-3"><a href="#Heading-3" class="headerlink" title="Heading 3"></a>Heading 3</h3><h4 id="Heading-4"><a href="#Heading-4" class="headerlink" title="Heading 4"></a>Heading 4</h4><h5 id="Heading-5"><a href="#Heading-5" class="headerlink" title="Heading 5"></a>Heading 5</h5><h6 id="Heading-6"><a href="#Heading-6" class="headerlink" title="Heading 6"></a>Heading 6</h6><h2 id="Paragraph"><a href="#Paragraph" class="headerlink" title="Paragraph"></a>Paragraph</h2><p><a href="https://hexo.io/" target="_blank" rel="noopener">test link hexo</a> fnajdiphfn fdsapioj fqwerjkqo erwqjip bnpjkfs nipgqoehrti nbfpiwiegqhr[ohtginqbjklfwqoprh[tgnqjkvbw nqrwp, rqnwjp ]]</p>
-<p><u>Underline text</u> dfsaqewnrj;li fqjrhipefadln fadnqjhpre  <del>Deleted text</del> Interdum et malesuada fames ac ante ipsum primis in faucibus. <code>hightlighted text</code>, blandit eget felis aliquam, rhoncus varius urna. Donec tellus sapien, sodales eget ante vitae, feugiat ullamcorper urna. Praesent auctor dui vitae dapibus eleifend. Proin viverra mollis neque, ut ullamcorper elit posuere eget.</p>
-<h3 id="Ordered-List-ol"><a href="#Ordered-List-ol" class="headerlink" title="Ordered List (ol)"></a>Ordered List (ol)</h3><ol>
-<li>List Item 1</li>
-<li>List Item 2</li>
-<li>List Item 3</li>
-</ol>
-<h3 id="Unordered-List-ul"><a href="#Unordered-List-ul" class="headerlink" title="Unordered List (ul)"></a>Unordered List (ul)</h3><ul>
-<li>List Item 1</li>
-<li>List Item 2</li>
-<li>List Item 3</li>
-</ul>
-<h2 id="Table"><a href="#Table" class="headerlink" title="Table"></a>Table</h2><table>
-<thead>
-<tr>
-<th>Header 1</th>
-<th>Header 2</th>
-<th>Header 3</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Division 1</td>
-<td>Division 2</td>
-<td>Division 3</td>
-</tr>
-<tr>
-<td>Division 1</td>
-<td>Division 2</td>
-<td>Division 3</td>
-</tr>
-<tr>
-<td>Division 1</td>
-<td>Division 2</td>
-<td>Division 3</td>
-</tr>
-<tr>
-<td>Division 1</td>
-<td>Division 2</td>
-<td>Division 3</td>
-</tr>
-</tbody>
-</table>
-<h2 id="Tabbed-code-block"><a href="#Tabbed-code-block" class="headerlink" title="Tabbed code block"></a>Tabbed code block</h2><figure class="highlight java"><figcaption><span>archives.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/* Block comment */</span></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  comment</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Hello world!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+                <div class="postShorten-excerpt">
+                    <h1 id="Heading-1"><a href="#Heading-1" class="headerlink" title="Heading 1"></a>Heading 1</h1><h2 id="Heading-2"><a href="#Heading-2" class="headerlink" title="Heading 2"></a>Heading 2</h2><h3 id="Heading-3"><a href="#Heading-3" class="headerlink" title="Heading 3"></a>Heading 3</h3>
                     
+                        <a href="/2019/03/19/Test-Elements-and-Code-Highlight/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
                         
-
-                    
-                    
-                        <p>
-                            <a href="/2019/03/19/Test-Elements-and-Code-Highlight/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
                     
                 </div>
             
@@ -500,7 +387,7 @@ Output: 6
     </article>
     
     
-    <article class="postShorten postShorten--thumbnailimg-bottom">
+    <article class="postShorten postShorten--thumbnailimg-right">
         <div class="postShorten-wrap">
             
             <div class="postShorten-header">
@@ -522,22 +409,15 @@ Output: 6
 
             </div>
             
-                <div class="postShorten-content">
-                    <p>When I Heard the Learn’d Astronomer<br>BY WALT WHITMAN</p>
-<p>When I heard the learn’d astronomer,<br>When the proofs, the figures, were ranged in columns before me,<br>When I was shown the charts and diagrams, to add, divide, and measure them,<br>When I sitting heard the astronomer where he lectured with much applause in the lecture-room,<br>How soon unaccountable I became tired and sick,<br>Till rising and gliding out I wander’d off by myself,<br>In the mystical moist night-air, and from time to time,<br>Look’d up in perfect silence at the stars.</p>
-
+                <div class="postShorten-excerpt">
+                    <p>When I heard the learn’d astronomer,<br>When the proofs, the figures, were ranged in columns before me,<br>
                     
+                        <a href="/2019/03/18/Astronomer/" class="postShorten-excerpt_link link">
+                            Continue reading
+                        </a>
                         
-
                     
-                    
-                        <p>
-                            <a href="/2019/03/18/Astronomer/#post-footer" class="postShorten-excerpt_link link">
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
+                </p></div>
             
         </div>
         
