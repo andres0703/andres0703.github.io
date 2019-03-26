@@ -197,7 +197,7 @@
     
         <span>in </span>
         
-    <a class="category-link" href="/categories/Leetcode/">Leetcode</a>, <a class="category-link" href="/categories/Leetcode/dp/">dp</a>
+    <a class="category-link" href="/categories/Leetcode/">Leetcode</a>
 
 
     
@@ -209,7 +209,7 @@
                     <h4 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description:"></a>Problem Description:</h4><p>Given a 2D binary matrix filled with 0’s and 1’s, find the largest square containing only 1’s and return its area.</p>
 <p>Example:</p>
 <p>Input: </p>
-<p>1 0 1 0 0<br>1 0 1 1 1<br>1 1 1 1 1<br>1 0 0 1 0</p>
+<p>1  0  1  0  0<br>1  0  1  1  1<br>1  1  1  1  1<br>1  0  0  1  0</p>
 <p>Output: 4</p>
 <h4 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis:"></a>Analysis:</h4><h6 id="Algorithm-1"><a href="#Algorithm-1" class="headerlink" title="Algorithm 1:"></a>Algorithm 1:</h6><p>This problem is very similar to <a href="http://andres0703.github.io/2019/03/21/maximal-rectangle/" title="[Rectangle problem]" target="_blank" rel="noopener">No.85 Maximal Rectangle problem</a>. In fact I tried to solve this problem right after Maximal Rectangle problem, so I naturally came up with a solution based upon that algorithm. The majority of the code remain the same, except when updating the maximum area after each row iteration, instead of calculate<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res = (right[i][j] - left[i][j]) * height[i][j];</span><br></pre></td></tr></table></figure><br>We compare height[i][j] and right[i][j] - left[i][j] and take the smaller one as square’s side, then the area is size squared.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int r = Math.min(right[i][j] - left[i][j], height[i][j]);</span><br><span class="line">res = r * r;</span><br></pre></td></tr></table></figure></p>
 <h6 id="Algorithm-2"><a href="#Algorithm-2" class="headerlink" title="Algorithm 2:"></a>Algorithm 2:</h6><p>Still dynamic programming, but this one only uses one matrix. </p>
@@ -253,7 +253,7 @@
     
         <span>in </span>
         
-    <a class="category-link" href="/categories/Leetcode/">Leetcode</a>, <a class="category-link" href="/categories/Leetcode/DP/">DP</a>
+    <a class="category-link" href="/categories/Leetcode/">Leetcode</a>
 
 
     
@@ -315,7 +315,7 @@
     
         <span>in </span>
         
-    <a class="category-link" href="/categories/Leetcode/">Leetcode</a>, <a class="category-link" href="/categories/Leetcode/DP/">DP</a>
+    <a class="category-link" href="/categories/Leetcode/">Leetcode</a>
 
 
     
@@ -377,7 +377,7 @@ Output: 6
     
         <span>in </span>
         
-    <a class="category-link" href="/categories/Tech/">Tech</a>, <a class="category-link" href="/categories/Tech/Java/">Java</a>
+    <a class="category-link" href="/categories/Java/">Java</a>
 
 
     
