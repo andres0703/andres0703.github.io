@@ -1,0 +1,475 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="WQL&#39;s Blog">
+    <title>Leetcode No. 221 Maximal Square - WQL&#39;s Blog</title>
+    <meta name="author" content="Andres Wang">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Andres Wang","sameAs":["https://github.com/andres0703"],"image":"me.jpg"},"articleBody":"Problem Description:Given a 2D binary matrix filled with 0’s and 1’s, find the largest square containing only 1’s and return its area.\nExample:\nInput: \n1 0 1 0 01 0 1 1 11 1 1 1 11 0 0 1 0\nOutput: 4\nAnalysis:Algorithm 1:This problem is very similar to No.85 Maximal Rectangle problem. In fact I tried to solve this problem right after Maximal Rectangle problem, so I naturally came up with a solution based upon that algorithm. The majority of the code remain the same, except when updating the maximum area after each row iteration, instead of calculate1res = (right[i][j] - left[i][j]) * height[i][j];We compare height[i][j] and right[i][j] - left[i][j] and take the smaller one as square’s side, then the area is size squared.12int r = Math.min(right[i][j] - left[i][j], height[i][j]);res = r * r;\nAlgorithm 2:Still dynamic programming, but this one only uses one matrix. \nMaximalSquare.java12345678910111213141516171819public class MaximalSquare &#123;    public int maximalSquare(char[][] matrix) &#123;        if (matrix == null || matrix.length == 0) return 0;        int res = 0;        int m = matrix.length;        int n = matrix[0].length;        int[][] dp = new int[m + 1][n + 1];                for (int i = 1; i &lt; m + 1; i++) &#123;            for (int j = 1; j &lt; n + 1; j++) &#123;                if (matrix[i - 1][j - 1] == &apos;1&apos;) &#123;                    dp[i][j] = Math.min(Math.min(dp[i - 1][j], dp[i][j - 1]), dp[i - 1][j - 1]) + 1;ß                &#125;                res = Math.max(res, dp[i][j]);            &#125;        &#125;        return res * res;    &#125;&#125;\n","dateCreated":"2019-03-26T13:29:40-04:00","dateModified":"2019-03-26T14:13:45-04:00","datePublished":"2019-03-26T13:29:40-04:00","description":"","headline":"Leetcode No. 221 Maximal Square","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://github.com/andres0703/andres0703.github.io/2019/03/26/maximal-square/"},"publisher":{"@type":"Organization","name":"Andres Wang","sameAs":["https://github.com/andres0703"],"image":"me.jpg","logo":{"@type":"ImageObject","url":"me.jpg"}},"url":"https://github.com/andres0703/andres0703.github.io/2019/03/26/maximal-square/","keywords":"leetcode, dp"}</script>
+    <meta name="description" content="Problem Description:Given a 2D binary matrix filled with 0’s and 1’s, find the largest square containing only 1’s and return its area. Example: Input:  1 0 1 0 01 0 1 1 11 1 1 1 11 0 0 1 0 Output: 4 A">
+<meta name="keywords" content="leetcode,dp">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Leetcode No. 221 Maximal Square">
+<meta property="og:url" content="https://github.com/andres0703/andres0703.github.io/2019/03/26/maximal-square/index.html">
+<meta property="og:site_name" content="WQL&#39;s Blog">
+<meta property="og:description" content="Problem Description:Given a 2D binary matrix filled with 0’s and 1’s, find the largest square containing only 1’s and return its area. Example: Input:  1 0 1 0 01 0 1 1 11 1 1 1 11 0 0 1 0 Output: 4 A">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-03-26T18:13:45.756Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Leetcode No. 221 Maximal Square">
+<meta name="twitter:description" content="Problem Description:Given a 2D binary matrix filled with 0’s and 1’s, find the largest square containing only 1’s and return its area. Example: Input:  1 0 1 0 01 0 1 1 11 1 1 1 11 0 0 1 0 Output: 4 A">
+    
+    
+        
+    
+    
+        <meta property="og:image" content="https://github.com/andres0703/andres0703.github.io/assets/images/me.jpg"/>
+    
+    
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/style-c4ozcsklz4kht2pebhp44xorvyverh23toayhn7i6ubrpyedak24hv1v0hyd.min.css">
+    <!--STYLES END-->
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-136674607-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-136674607-1');
+    </script>
+
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+        
+            
+        
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a class="header-title-link" href="/ ">WQL&#39;s Blog</a>
+    </div>
+    
+        
+            <a class="header-right-picture " href="#about">
+        
+        
+            <img class="header-picture" src="/assets/images/me.jpg" alt="Author&#39;s picture">
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+
+        
+    
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+            <div class="sidebar-profile">
+                <a href="/#about">
+                    <img class="sidebar-profile-picture" src="/assets/images/me.jpg" alt="Author&#39;s picture">
+                </a>
+                <h4 class="sidebar-profile-name">Andres Wang</h4>
+                
+                    <h5 class="sidebar-profile-bio"><p>I’m currently a CS grad student in GWU.</p>
+</h5>
+                
+            </div>
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/ " title="Home">
+                    
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-categories" title="Categories">
+                    
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-tags" title="Tags">
+                    
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="/all-archives" title="Archives">
+                    
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link open-algolia-search" href="#search" title="Search">
+                    
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Search</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="#about" title="About">
+                    
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a class="sidebar-button-link " href="https://github.com/andres0703" target="_blank" rel="noopener" title="GitHub">
+                    
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Leetcode No. 221 Maximal Square
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2019-03-26T13:29:40-04:00">
+	
+		    Mar 26, 2019
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Leetcode/">Leetcode</a>, <a class="category-link" href="/categories/Leetcode/dp/">dp</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h4 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description:"></a>Problem Description:</h4><p>Given a 2D binary matrix filled with 0’s and 1’s, find the largest square containing only 1’s and return its area.</p>
+<p>Example:</p>
+<p>Input: </p>
+<p>1 0 1 0 0<br>1 0 1 1 1<br>1 1 1 1 1<br>1 0 0 1 0</p>
+<p>Output: 4</p>
+<h4 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis:"></a>Analysis:</h4><h6 id="Algorithm-1"><a href="#Algorithm-1" class="headerlink" title="Algorithm 1:"></a>Algorithm 1:</h6><p>This problem is very similar to <a href="http://andres0703.github.io/2019/03/21/maximal-rectangle/" title="[Rectangle problem]" target="_blank" rel="noopener">No.85 Maximal Rectangle problem</a>. In fact I tried to solve this problem right after Maximal Rectangle problem, so I naturally came up with a solution based upon that algorithm. The majority of the code remain the same, except when updating the maximum area after each row iteration, instead of calculate<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res = (right[i][j] - left[i][j]) * height[i][j];</span><br></pre></td></tr></table></figure><br>We compare height[i][j] and right[i][j] - left[i][j] and take the smaller one as square’s side, then the area is size squared.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int r = Math.min(right[i][j] - left[i][j], height[i][j]);</span><br><span class="line">res = r * r;</span><br></pre></td></tr></table></figure></p>
+<h6 id="Algorithm-2"><a href="#Algorithm-2" class="headerlink" title="Algorithm 2:"></a>Algorithm 2:</h6><p>Still dynamic programming, but this one only uses one matrix. </p>
+<figure class="highlight plain"><figcaption><span>MaximalSquare.java</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class MaximalSquare &#123;</span><br><span class="line">    public int maximalSquare(char[][] matrix) &#123;</span><br><span class="line">        if (matrix == null || matrix.length == 0) return 0;</span><br><span class="line">        int res = 0;</span><br><span class="line">        int m = matrix.length;</span><br><span class="line">        int n = matrix[0].length;</span><br><span class="line">        int[][] dp = new int[m + 1][n + 1];</span><br><span class="line">        </span><br><span class="line">        for (int i = 1; i &lt; m + 1; i++) &#123;</span><br><span class="line">            for (int j = 1; j &lt; n + 1; j++) &#123;</span><br><span class="line">                if (matrix[i - 1][j - 1] == &apos;1&apos;) &#123;</span><br><span class="line">                    dp[i][j] = Math.min(Math.min(dp[i - 1][j], dp[i][j - 1]), dp[i - 1][j - 1]) + 1;ß</span><br><span class="line">                &#125;</span><br><span class="line">                res = Math.max(res, dp[i][j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return res * res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/dp/">dp</a> <a class="tag tag--primary tag--small t-link" href="/tags/leetcode/">leetcode</a>
+
+            </div>
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/03/25/edit-distance/" data-tooltip="Leetcode No. 72 Edit Distance" aria-label="NEXT: Leetcode No. 72 Edit Distance">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/andres0703/andres0703.github.io/2019/03/26/maximal-square/" title="Share on Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://github.com/andres0703/andres0703.github.io/2019/03/26/maximal-square/" title="Share on Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://github.com/andres0703/andres0703.github.io/2019/03/26/maximal-square/" title="Share on Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 Andres Wang. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--disabled">
+                
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2019/03/25/edit-distance/" data-tooltip="Leetcode No. 72 Edit Distance" aria-label="NEXT: Leetcode No. 72 Edit Distance">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/andres0703/andres0703.github.io/2019/03/26/maximal-square/" title="Share on Facebook">
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://github.com/andres0703/andres0703.github.io/2019/03/26/maximal-square/" title="Share on Twitter">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://github.com/andres0703/andres0703.github.io/2019/03/26/maximal-square/" title="Share on Google+">
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/andres0703/andres0703.github.io/2019/03/26/maximal-square/">
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https://github.com/andres0703/andres0703.github.io/2019/03/26/maximal-square/">
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https://github.com/andres0703/andres0703.github.io/2019/03/26/maximal-square/">
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+    
+        
+    
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/me.jpg" alt="Author&#39;s picture">
+        
+            <h4 id="about-card-name">Andres Wang</h4>
+        
+            <div id="about-card-bio"><p>I’m currently a CS grad student in GWU.</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                <p>student</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br>
+                Washington, DC
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/blurcity.jpg');"></div>
+        <!--SCRIPTS-->
+<script src="/assets/js/script-dbd16rvloemmuxdzniplmnxxvwoz24eya9wol0b7vvmlokgqsjivmb8dnscy.min.js"></script>
+<!--SCRIPTS END-->
+
+    
+
+
+
+    </body>
+</html>
